@@ -11,10 +11,10 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		for: #common
 		do: [ 
 			spec 
-			baseline: 'Seaside3' with: [
+			baseline: 'Parasol' with: [
 				spec
-					loads: #('Tests' 'Zinc-Seaside');
-					repository: 'github://SeasideSt/Seaside/repository'].
+					loads: #('tests');
+					repository: 'github://SeasideSt/Parasol/repository'].
 			spec
 				baseline: 'OSSubprocess'
 				with: [ spec
