@@ -25,5 +25,5 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 				with: [ spec requires: #(OSSubprocess) ].
 			spec
 				package: 'BrowserStackLocal-Tests'
-				with: [ spec requires: #(BrowserStackLocal Seaside3) ] ]
+				with: [ spec requires: #(BrowserStackLocal Parasol) ] ]
 ]
