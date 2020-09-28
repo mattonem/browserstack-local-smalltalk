@@ -1,5 +1,5 @@
 Class {
-	#name : #BSLocalTesting,
+	#name : #BSLocalTestingExample,
 	#superclass : #TestCase,
 	#instVars : [
 		'driver'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #running }
-BSLocalTesting >> setUp [
+BSLocalTestingExample >> setUp [
 	| option |
 	super setUp.
 	self timeLimit: 30 seconds.
@@ -24,7 +24,7 @@ BSLocalTesting >> setUp [
 ]
 
 { #category : #running }
-BSLocalTesting >> tearDown [ 
+BSLocalTestingExample >> tearDown [ 
 	super tearDown.
 	driver quit.
 	BSLocal stop
@@ -32,7 +32,7 @@ BSLocalTesting >> tearDown [
 ]
 
 { #category : #tests }
-BSLocalTesting >> testBSLocal [
-	driver get: 'https://www.browserstack.com/local-testing/automate'.
-	self assert: true 
+BSLocalTestingExample >> testBSLocal [
+	driver get: 'http://localhost:8080'.
+	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.3'
 ]
