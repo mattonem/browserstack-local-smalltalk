@@ -7,12 +7,21 @@ Class {
 	#category : #'BrowserStackLocal-Tests'
 }
 
+{ #category : #tests }
+BSLocalTestingPixelExample >> defaultTimeLimit [ 
+	^ 1 minute
+]
+
+{ #category : #running }
+BSLocalTestingPixelExample >> resources [
+
+	^ super resources , (Array with: BSLocalTestResource)
+]
+
 { #category : #running }
 BSLocalTestingPixelExample >> setUp [
 	| option |
 	super setUp.
-	self timeLimit: 1 minute.
-	BSLocal start.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
 	BPRemoteWebDriver password: BSLocal browserstackKey.
@@ -33,7 +42,6 @@ BSLocalTestingPixelExample >> setUp [
 BSLocalTestingPixelExample >> tearDown [ 
 	super tearDown.
 	driver quit.
-	BSLocal stop.
 ]
 
 { #category : #tests }

@@ -7,12 +7,21 @@ Class {
 	#category : #'BrowserStackLocal-Tests'
 }
 
+{ #category : #tests }
+BSLocalTestingChromeExample >> defaultTimeLimit [ 
+	^ 1 minute
+]
+
+{ #category : #tests }
+BSLocalTestingChromeExample >> resources [
+
+	^ super resources , (Array with: BSLocalTestResource)
+]
+
 { #category : #running }
 BSLocalTestingChromeExample >> setUp [
 	| option |
 	super setUp.
-	self timeLimit: 1 minute.
-	BSLocal start.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
 	BPRemoteWebDriver password: BSLocal browserstackKey.
@@ -30,7 +39,6 @@ BSLocalTestingChromeExample >> setUp [
 BSLocalTestingChromeExample >> tearDown [ 
 	super tearDown.
 	driver quit.
-	BSLocal stop.
 ]
 
 { #category : #tests }
