@@ -14,7 +14,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 			baseline: 'Parasol' with: [
 				spec
 					loads: #('tests');
-					repository: 'github://mattonem/Parasol/repository'].
+					repository: 'github://mattonem/Parasol:browserstackGrid/repository'].
 			spec
 				baseline: 'OSSubprocess'
 				with: [ spec
