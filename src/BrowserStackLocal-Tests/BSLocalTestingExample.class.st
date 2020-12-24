@@ -11,7 +11,7 @@ Class {
 BSLocalTestingExample >> setUp [
 	| option |
 	super setUp.
-	self timeLimit: 30 seconds.
+	self timeLimit: 1 minute.
 	BSLocal start.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
@@ -20,6 +20,9 @@ BSLocalTestingExample >> setUp [
 	BPRemoteWebDriver serverPort: 443.
 	option := BPChromeOptions new.
 	option setCapability: 'browserstack.local' to: true.
+	option setCapability: 'project' to: 'ce-challenge'.
+	option setCapability: 'name' to: 'smalltalk-test'.
+	option setCapability: 'build' to: Time now asString. 
 	driver := BPRemoteWebDriver new initWithCapabilities: option
 ]
 
@@ -27,8 +30,7 @@ BSLocalTestingExample >> setUp [
 BSLocalTestingExample >> tearDown [ 
 	super tearDown.
 	driver quit.
-	BSLocal stop
-	
+	BSLocal stop.
 ]
 
 { #category : #tests }

@@ -13,11 +13,14 @@ BSLocal class >> binaryUrl [
 	^ Smalltalk os isWindows
 		ifTrue:
 			[ 'https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal.exe' ]
-		ifFalse: [ Smalltalk vm is64bit
+		ifFalse: [ Smalltalk os isMacOS
 				ifTrue:
-					[ 'https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal-linux-x64' ]
-				ifFalse:
-					[ 'https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal-linux-x32' ] ]
+					[ 'https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal-darwin-x64' ]
+				ifFalse: [ Smalltalk vm is64bit
+						ifTrue:
+							[ 'https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal-linux-x64' ]
+						ifFalse:
+							[ 'https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal-linux-x32' ] ] ]
 ]
 
 { #category : #accessing }
