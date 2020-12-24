@@ -7,15 +7,15 @@ Class {
 	#category : #'BrowserStackLocal-Tests'
 }
 
+{ #category : #running }
+BSLocalTestingPixelExample class >> resources [
+
+	^ super resources , (Array with: BSLocalTestResource)
+]
+
 { #category : #tests }
 BSLocalTestingPixelExample >> defaultTimeLimit [ 
 	^ 1 minute
-]
-
-{ #category : #running }
-BSLocalTestingPixelExample >> resources [
-
-	^ super resources , (Array with: BSLocalTestResource)
 ]
 
 { #category : #running }
