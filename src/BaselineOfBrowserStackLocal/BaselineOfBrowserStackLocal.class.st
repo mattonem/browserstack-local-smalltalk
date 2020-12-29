@@ -10,12 +10,12 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 	spec
 		for: #common
 		do: [ spec
-				project: 'Parasol-core'
+				project: 'Parasol core'
 				with: [ spec
 						loads: #('core');
 						repository: 'github://mattonem/Parasol:browserstackGrid/repository' ].
 			spec
-				project: 'Parasol-tests'
+				project: 'Parasol tests'
 				with: [ spec
 						loads: #('tests');
 						repository: 'github://mattonem/Parasol:browserstackGrid/repository' ].
@@ -29,13 +29,13 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 				with: [ spec repository: 'github://pharo-contributions/taskit:v1.0' ].
 			spec
 				package: 'BrowserStackLocal'
-				with: [ spec requires: #(OSSubprocess 'Parasol-core') ].
+				with: [ spec requires: #(OSSubprocess 'Parasol core') ].
 			spec
 				package: 'BrowserStackParallel'
 				with: [ spec requires: #(core TaskIt) ].
 			spec
 				package: 'BrowserStackLocal-Tests'
-				with: [ spec requires: #(core 'Parasol-tests') ] ].
+				with: [ spec requires: #(core 'Parasol tests') ] ].
 	spec
 		group: 'core' with: #(BrowserStackLocal);
 		group: 'tests' with: #('BrowserStackLocal-Tests');
