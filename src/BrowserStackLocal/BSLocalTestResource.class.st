@@ -25,6 +25,6 @@ BSLocalTestResource >> setUp [
 BSLocalTestResource >> tearDown [
 	super tearDown.
 	Transcript show: 'stop'; cr.
-	"BSLocal stop."
+	BSLocal stop.
 	state :=  false.
 ]
