@@ -22,13 +22,14 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 						loads: #default ].
 			spec
 				baseline: 'TaskIt'
-				with: [ spec repository: 'github://pharo-contributions/taskit:v1.0' ].
+				with: [ spec repository: 'github://pharo-contributions/taskit:v1.0';
+						loads: #default ].
 			spec
 				package: 'BrowserStackLocal'
 				with: [ spec requires: #(OSSubprocess 'Parasol') ].
 			spec
 				package: 'BrowserStackParallel'
-				with: [ spec requires: #(core TaskIt) ].
+				with: [ spec requires: #(test TaskIt) ].
 			spec
 				package: 'BrowserStackLocal-Tests'
 				with: [ spec requires: #(core 'Parasol') ] ].
