@@ -12,13 +12,13 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		do: [ spec
 				project: 'Parasol core'
 				with: [ spec
-						name: 'BaselineOfParasol';
+						className: 'BaselineOfParasol';
 						loads: #('core');
 						repository: 'github://mattonem/Parasol:browserstackGrid/repository' ].
 			spec
 				project: 'Parasol tests'
 				with: [ spec
-						name: 'BaselineOfParasol';
+						className: 'BaselineOfParasol';
 						loads: #('tests');
 						repository: 'github://mattonem/Parasol:browserstackGrid/repository' ].
 			spec
