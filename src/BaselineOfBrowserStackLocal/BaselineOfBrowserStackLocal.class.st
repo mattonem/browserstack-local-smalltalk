@@ -22,7 +22,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 						loads: #default ].
 			spec
 				baseline: 'TaskIt'
-				with: [ spec repository: 'github://pharo-contributions/taskit:v1.0';
+				with: [ spec repository: 'github://pharo-contributions/taskit';
 						loads: #default ].
 			spec
 				package: 'BrowserStackLocal'
