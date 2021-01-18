@@ -12,7 +12,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		do: [ spec
 				baseline: 'Parasol'
 				with: [ spec
-						loads: #('tests');
+						loads: #('default');
 						repository: 'github://mattonem/Parasol:browserstackGrid/repository' ].
 			
 			spec
