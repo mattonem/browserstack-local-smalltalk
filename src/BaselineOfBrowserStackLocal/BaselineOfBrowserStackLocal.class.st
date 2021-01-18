@@ -4,7 +4,7 @@ Class {
 	#category : #BaselineOfBrowserStackLocal
 }
 
-{ #category : #baselines }
+{ #category : #baseline }
 BaselineOfBrowserStackLocal >> baseline: spec [
 	<baseline>
 	spec
@@ -13,7 +13,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 			spec 
 			baseline: 'Parasol' with: [
 				spec
-					loads: #('tests');
+					loads: #('default');
 					repository: 'github://mattonem/Parasol:browserstackGrid/repository'].
 			spec
 				baseline: 'OSSubprocess'
@@ -22,8 +22,8 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 						loads: #default ].
 			spec
 				package: 'BrowserStackLocal'
-				with: [ spec requires: #(OSSubprocess) ].
+				with: [ spec requires: #(OSSubprocess Parasol) ].
 			spec
 				package: 'BrowserStackLocal-Tests'
-				with: [ spec requires: #(BrowserStackLocal Parasol) ] ]
+				with: [ spec requires: #(BrowserStackLocal) ] ]
 ]
