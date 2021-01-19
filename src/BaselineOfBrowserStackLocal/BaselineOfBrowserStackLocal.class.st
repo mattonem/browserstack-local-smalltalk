@@ -26,7 +26,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 						loads: #default ].
 			spec
 				package: 'BrowserStackLocal'
-				with: [ spec requires: #(OSSubprocess 'Parasol') ].
+				with: [ spec requires: #(OSSubprocess 'Parasol' TaskIt) ].
 			spec
 				package: 'BrowserStackParallel'
 				with: [ spec requires: #(tests TaskIt) ].
