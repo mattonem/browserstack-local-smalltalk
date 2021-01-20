@@ -16,7 +16,6 @@ BSLocalTestResource >> initialze [
 { #category : #running }
 BSLocalTestResource >> setUp [
 	super setUp.
-	Transcript show: 'start'; cr.
 	BSLocal start.
 	state := true
 ]
@@ -24,7 +23,6 @@ BSLocalTestResource >> setUp [
 { #category : #running }
 BSLocalTestResource >> tearDown [
 	super tearDown.
-	Transcript show: 'stop'; cr.
 	BSLocal stop.
 	state :=  false.
 ]
