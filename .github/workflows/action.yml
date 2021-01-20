@@ -50,7 +50,7 @@ jobs:
           curl -L https://get.pharo.org/64/ | bash
           ./pharo Pharo.image metacello install filetree://./src BaselineOfBrowserStackLocal --groups=tests
       - name: test
-        run: ./pharo Pharo.image test "BrowserStackLocal-Tests"
+        run: ./pharo Pharo.image test "BrowserStackLocal-Tests" --junit-xml-output --fail-on-error --fail-on-failure
     
   build-parallel:
     # The type of runner that the job will run on
@@ -71,5 +71,5 @@ jobs:
           curl -L https://get.pharo.org/64/ | bash
           ./pharo Pharo.image metacello install filetree://./src BaselineOfBrowserStackLocal --groups=parallel
       - name: test
-        run: ./pharo Pharo.image test "BrowserStackLocal-Tests"
+        run: ./pharo Pharo.image test "BrowserStackLocal-Tests" --junit-xml-output --fail-on-error --fail-on-failure
 
