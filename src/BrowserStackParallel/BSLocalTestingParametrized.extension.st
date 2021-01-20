@@ -2,7 +2,7 @@ Extension { #name : #BSLocalTestingParametrized }
 
 { #category : #'*BrowserStackParallel' }
 BSLocalTestingParametrized class >> suiteClass [
-	^ParallelTestSuite
+	^ self isAbstract ifTrue: [ TestSuite ] ifFalse: [ ParallelTestSuite ]
 ]
 
 { #category : #'*BrowserStackParallel' }
