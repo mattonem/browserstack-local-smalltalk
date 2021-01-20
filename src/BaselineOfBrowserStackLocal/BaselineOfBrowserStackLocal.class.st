@@ -4,7 +4,7 @@ Class {
 	#category : #BaselineOfBrowserStackLocal
 }
 
-{ #category : #baselines }
+{ #category : #baseline }
 BaselineOfBrowserStackLocal >> baseline: spec [
 	<baseline>
 	spec
@@ -31,7 +31,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 				with: [ spec requires: #(tests TaskIt) ].
 			spec
 				package: 'BrowserStackLocal-Tests'
-				with: [ spec requires: #(core 'Parasol') ] ].
+				with: [ spec requires: #(core Parasol) ] ].
 	spec
 		group: 'core' with: #(BrowserStackLocal);
 		group: 'tests' with: #('BrowserStackLocal-Tests');
