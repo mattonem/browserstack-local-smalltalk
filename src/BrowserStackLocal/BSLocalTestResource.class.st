@@ -1,17 +1,30 @@
 Class {
 	#name : #BSLocalTestResource,
 	#superclass : #TestResource,
+	#instVars : [
+		'state'
+	],
 	#category : #BrowserStackLocal
 }
 
 { #category : #running }
+BSLocalTestResource >> initialze [
+	super initialize.
+	state := false
+]
+
+{ #category : #running }
 BSLocalTestResource >> setUp [
 	super setUp.
-	BSLocal start
+	Transcript show: 'start'; cr.
+	BSLocal start.
+	state := true
 ]
 
 { #category : #running }
 BSLocalTestResource >> tearDown [
 	super tearDown.
-	BSLocal stop
+	Transcript show: 'stop'; cr.
+	BSLocal stop.
+	state :=  false.
 ]
