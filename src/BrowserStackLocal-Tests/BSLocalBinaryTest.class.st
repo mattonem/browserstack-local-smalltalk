@@ -14,6 +14,7 @@ BSLocalBinaryTest >> testBiranyUrl [
 
 { #category : #tests }
 BSLocalBinaryTest >> testDownload [
+	self timeLimit: 1 minute.
 	self shouldnt: BSLocal getBinary raise: Exception
 ]
 

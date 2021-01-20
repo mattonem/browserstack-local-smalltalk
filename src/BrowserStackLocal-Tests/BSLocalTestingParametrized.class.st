@@ -39,6 +39,15 @@ BSLocalTestingParametrized class >> resources [
 	^ super resources , (Array with: BSLocalTestResource with: BSBuildName)
 ]
 
+{ #category : #tests }
+BSLocalTestingParametrized class >> testParameters [
+
+	^ ParametrizedTestMatrix new
+		addCase: { #capabilities -> self chromeCapabilities. };
+		addCase: { #capabilities -> self pixelCapabilities. };			
+		yourself.
+]
+
 { #category : #running }
 BSLocalTestingParametrized >> capabilities: someCapabilities [
 	capabilities := someCapabilities
@@ -53,6 +62,7 @@ BSLocalTestingParametrized >> defaultTimeLimit [
 BSLocalTestingParametrized >> setUp [
 	| option |
 	super setUp.
+	ZnZincServerAdaptor startOn: 8080.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
 	BPRemoteWebDriver password: BSLocal browserstackKey.
