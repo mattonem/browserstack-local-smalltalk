@@ -68,7 +68,6 @@ BSLocalTestingParametrized >> setUp [
 	BPRemoteWebDriver password: BSLocal browserstackKey.
 	BPRemoteWebDriver scheme: 'https'.
 	BPRemoteWebDriver serverPort: 443.
-	Transcript show: self className, 'start';cr.
 	option := capabilities.
 	driver := BPRemoteWebDriver new initWithCapabilities: option
 ]
@@ -76,7 +75,6 @@ BSLocalTestingParametrized >> setUp [
 { #category : #running }
 BSLocalTestingParametrized >> tearDown [ 
 	super tearDown.
-	Transcript show: self className, 'stop';cr.
 	driver quit.
 ]
 
