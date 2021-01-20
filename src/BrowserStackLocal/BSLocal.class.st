@@ -52,7 +52,7 @@ BSLocal class >> browserstackKeySettingOn: aBuilder [
 BSLocal class >> browserstackUsername [
 	^ browserstackUsername
 		ifNil: [ Smalltalk os environment
-				at: 'BROWSERSTACK_ACCESS_USERNAME'
+				at: 'BROWSERSTACK_USERNAME'
 				ifAbsent: [ '' ] ]
 ]
 
