@@ -8,11 +8,13 @@ Class {
 }
 
 { #category : #'class initialization' }
-ParallelTestSuite class >> initialize [
-	TestPool := TKTWorkerPool new.
-	TestPool name: 'test pool'.
-	TestPool poolMaxSize: 10.
-	TestPool start.
+ParallelTestSuite class >> testPool [
+	^ TestPool ifNil: [ 
+		TestPool := TKTWorkerPool new.
+		TestPool name: 'test pool'.
+		TestPool poolMaxSize: 10.
+		TestPool start.]
+	
 ]
 
 { #category : #running }
@@ -25,10 +27,15 @@ ParallelTestSuite >> runUnmanaged: aResult [
 		do: [ :each | 
 			future := future
 				zip:
-					(TestPool
+					(self testPool
 						future: [ each run: aResult.
 							self announceTest: each.
 							self changed: each ]) ].
 	future synchronizeTimeout: 2 minutes ]
 		ensure: [ self tearDown ]
+]
+
+{ #category : #running }
+ParallelTestSuite >> testPool [
+	^ self class testPool
 ]
