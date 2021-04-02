@@ -81,5 +81,5 @@ BSLocalTestingParametrized >> tearDown [
 { #category : #running }
 BSLocalTestingParametrized >> testBSLocal [
 	driver get: 'http://localhost:8080'.
-	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.3'
+	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.4'
 ]
