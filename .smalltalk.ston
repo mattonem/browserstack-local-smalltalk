@@ -1,0 +1,12 @@
+SmalltalkCISpec {
+  #name : 'BrowserStackLocal', 
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'BrowserStackLocal',
+      #directory : 'src',
+      #load : [ 'tests' ],
+      #onConflict : #useIncoming,
+      #platforms : [ #pharo ]
+    }
+  ]
+}
