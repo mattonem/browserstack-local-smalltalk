@@ -9,7 +9,7 @@ Class {
 
 { #category : #evaluating }
 BSBuildName class >> value [ 
-	^ Value
+	^ Value ifNil: [ ^ Value := Time now asString ]
 ]
 
 { #category : #running }
