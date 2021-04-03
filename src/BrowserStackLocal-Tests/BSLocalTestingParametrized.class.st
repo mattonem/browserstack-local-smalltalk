@@ -11,7 +11,7 @@ Class {
 { #category : #tests }
 BSLocalTestingParametrized class >> chromeCapabilities [
 	| option |
-	option := BPChromeOptions new.
+	option := BPGenericOptions new.
 	option setCapability: 'browserstack.local' to: true.
 	option setCapability: 'project' to: 'ce-challenge'.
 	option setCapability: 'name' to: 'smalltalk-test'.
