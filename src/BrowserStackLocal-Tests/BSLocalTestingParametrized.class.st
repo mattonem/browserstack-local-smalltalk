@@ -36,7 +36,7 @@ BSLocalTestingParametrized class >> pixelCapabilities [
 { #category : #tests }
 BSLocalTestingParametrized class >> resources [
 
-	^ super resources , (Array with: BSLocalTestResource with: BSBuildName)
+	^ super resources , (Array with: BSBuildName)
 ]
 
 { #category : #tests }
@@ -62,6 +62,7 @@ BSLocalTestingParametrized >> defaultTimeLimit [
 BSLocalTestingParametrized >> setUp [
 	| option |
 	super setUp.
+	BSLocal start.
 	ZnZincServerAdaptor startOn: 8080.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
@@ -76,6 +77,7 @@ BSLocalTestingParametrized >> setUp [
 BSLocalTestingParametrized >> tearDown [ 
 	super tearDown.
 	driver quit.
+	BSLocal stop.
 ]
 
 { #category : #running }
