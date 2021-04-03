@@ -12,6 +12,10 @@ Class {
 BSLocalTestingParametrized class >> chromeCapabilities [
 	| option |
 	option := BPGenericOptions new.
+	option setCapability: 'os' to: 'windows'.
+	option setCapability: 'os_version' to: '10'.
+	option setCapability: 'browser' to: 'Chrome'.
+	option setCapability: 'browser_version' to: 'latest'.
 	option setCapability: 'browserstack.local' to: true.
 	option setCapability: 'project' to: 'ce-challenge'.
 	option setCapability: 'name' to: 'smalltalk-test'.
