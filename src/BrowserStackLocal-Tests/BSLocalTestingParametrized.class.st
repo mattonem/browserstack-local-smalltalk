@@ -38,12 +38,6 @@ BSLocalTestingParametrized class >> pixelCapabilities [
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized class >> resources [
-
-	^ super resources , (Array with: BSBuildName)
-]
-
-{ #category : #tests }
 BSLocalTestingParametrized class >> testParameters [
 
 	^ ParametrizedTestMatrix new
