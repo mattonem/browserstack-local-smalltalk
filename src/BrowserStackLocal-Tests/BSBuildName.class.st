@@ -1,6 +1,6 @@
 Class {
 	#name : #BSBuildName,
-	#superclass : #TestResource,
+	#superclass : #Object,
 	#classVars : [
 		'Value'
 	],
