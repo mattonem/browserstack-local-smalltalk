@@ -4,7 +4,7 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #baseline : 'BrowserStackLocal',
       #directory : 'src',
-      #load : [ 'tests' ],
+      #load : [ 'tests', 'parallel' ],
       #onConflict : #useIncoming,
       #platforms : [ #pharo ]
     }
