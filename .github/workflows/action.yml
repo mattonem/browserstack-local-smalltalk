@@ -50,7 +50,18 @@ jobs:
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      - name: 'Start BrowserStackLocal Tunnel'
+      - uses: 'browserstack/github-actions/setup-local@master'
+        with:
+         local-testing: start
+         local-logging-level: all-logs
+         local-identifier: random
       - name: Run tests
         run: smalltalkci -s ${{ matrix.smalltalk }}
         shell: bash
         timeout-minutes: 20
+        
+      - name: 'Stop BrowserStackLocal'
+        uses: 'browserstack/github-actions/setup-local@master'
+        with:
+         local-testing: stop
