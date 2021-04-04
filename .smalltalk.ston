@@ -9,7 +9,9 @@ SmalltalkCISpec {
       #platforms : [ #pharo ]
     }
   ],
-  #include : {
+  #testing : {
+    #include : {
       #classes : [ #BSLocalTestingParametrized ]
     }
+  }
 }
