@@ -60,7 +60,7 @@ BSLocalTestingParametrized >> defaultTimeLimit [
 BSLocalTestingParametrized >> setUp [
 	| option |
 	super setUp.
-	BSLocal start.
+	"BSLocal start."
 	ZnZincServerAdaptor startOn: 8080.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
@@ -75,7 +75,7 @@ BSLocalTestingParametrized >> setUp [
 BSLocalTestingParametrized >> tearDown [ 
 	super tearDown.
 	driver quit.
-	BSLocal stop.
+	"BSLocal stop."
 ]
 
 { #category : #running }
