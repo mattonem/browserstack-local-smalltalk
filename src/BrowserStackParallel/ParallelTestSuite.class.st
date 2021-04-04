@@ -19,20 +19,31 @@ ParallelTestSuite class >> testPool [
 
 { #category : #running }
 ParallelTestSuite >> runUnmanaged: aResult [
-	| future |
+
+	| futures |
 	self setUp.
-	
-	future := [  ] future.
-	[ self tests
-		do: [ :each | 
-			future := future
-				zip:
-					(self testPool
-						future: [ each run: aResult.
-							self announceTest: each.
-							self changed: each ]) ].
-	future synchronizeTimeout: 2 minutes ]
-		ensure: [ self tearDown ]
+	[ 
+	futures := self tests collect: [ :each | 
+		           self testPool future: [ 
+			           each run: aResult.
+			           self announceTest: each.
+			           self changed: each ] ].
+	(TKTFuture all: futures) synchronizeTimeout: 2 minutes ] ensure: [ 
+		self tearDown ]
+]
+
+{ #category : #running }
+ParallelTestSuite >> setUp [
+
+	super setUp.
+	ZnZincServerAdaptor startOn: 8080.
+	BSLocal start
+]
+
+{ #category : #running }
+ParallelTestSuite >> tearDown [ 
+	super tearDown.
+	BSLocal stop
 ]
 
 { #category : #running }
