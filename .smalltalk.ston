@@ -8,5 +8,8 @@ SmalltalkCISpec {
       #onConflict : #useIncoming,
       #platforms : [ #pharo ]
     }
-  ]
+  ],
+  #include : {
+      #classes : [ #BSLocalTestingParametrized ]
+    }
 }
