@@ -53,6 +53,7 @@ BSLocalTestingParametrized >> afterAll [
 
 { #category : #running }
 BSLocalTestingParametrized >> beforeAll [ 
+	ZnZincServerAdaptor startOn: 8080.
 	^ BSLocal start
 ]
 
@@ -78,7 +79,6 @@ BSLocalTestingParametrized >> runCase [
 BSLocalTestingParametrized >> setUp [
 	| option |
 	super setUp.
-	ZnZincServerAdaptor startOn: 8080.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
 	BPRemoteWebDriver password: BSLocal browserstackKey.
