@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0 ]
+        smalltalk: [ Pharo64-8.0 ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
