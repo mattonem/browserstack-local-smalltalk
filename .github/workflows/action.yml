@@ -46,7 +46,7 @@ jobs:
         with:
           smalltalk-image: ${{ matrix.smalltalk }}
           smalltalkCI-source: 'mattonem/smalltalkCI'
-          smalltalkCI-branch: 'patch-3'
+          smalltalkCI-branch: 'patch-4'
       - name: BrowserStack Action
         uses: 'browserstack/github-actions@master'
         with:
