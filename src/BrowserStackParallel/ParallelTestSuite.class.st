@@ -36,6 +36,7 @@ ParallelTestSuite >> runUnmanaged: aResult [
 ParallelTestSuite >> setUp [
 
 	super setUp.
+	BSBuildName reset.
 	ZnZincServerAdaptor startOn: 8080.
 	BSLocal start
 ]
