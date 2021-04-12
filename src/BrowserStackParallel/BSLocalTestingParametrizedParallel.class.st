@@ -61,6 +61,11 @@ BSLocalTestingParametrizedParallel >> defaultTimeLimit [
 	^ 2 minute
 ]
 
+{ #category : #tests }
+BSLocalTestingParametrizedParallel >> runCaseManaged [ 
+	^ self runCase
+]
+
 { #category : #running }
 BSLocalTestingParametrizedParallel >> setUp [
 
