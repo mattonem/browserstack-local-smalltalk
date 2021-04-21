@@ -1,5 +1,5 @@
 Class {
-	#name : #ParallelTestSuite,
+	#name : #BSParallelTestSuite,
 	#superclass : #TestSuite,
 	#classVars : [
 		'TestPool'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #'class initialization' }
-ParallelTestSuite class >> testPool [
+BSParallelTestSuite class >> testPool [
 	^ TestPool ifNil: [ 
 		TestPool := TKTWorkerPool new.
 		TestPool name: 'test pool'.
@@ -18,7 +18,7 @@ ParallelTestSuite class >> testPool [
 ]
 
 { #category : #running }
-ParallelTestSuite >> runUnmanaged: aResult [
+BSParallelTestSuite >> runUnmanaged: aResult [
 	| future |
 	self setUp.
 	
@@ -36,6 +36,6 @@ ParallelTestSuite >> runUnmanaged: aResult [
 ]
 
 { #category : #running }
-ParallelTestSuite >> testPool [
+BSParallelTestSuite >> testPool [
 	^ self class testPool
 ]
