@@ -45,6 +45,8 @@ jobs:
       - uses: hpi-swa/setup-smalltalkCI@v1
         with:
           smalltalk-image: ${{ matrix.smalltalk }}
+          smalltalkCI-source: 'mattonem/smalltalkCI'
+          smalltalkCI-branch: 'patch-4'
       - name: BrowserStack Action
         uses: 'browserstack/github-actions@master'
         with:
