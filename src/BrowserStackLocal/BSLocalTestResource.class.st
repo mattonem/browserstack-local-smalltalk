@@ -15,7 +15,9 @@ BSLocalTestResource >> initialze [
 
 { #category : #running }
 BSLocalTestResource >> setUp [
+
 	super setUp.
+	state ifTrue: [ ^ self ].
 	BSLocal start.
 	state := true
 ]
