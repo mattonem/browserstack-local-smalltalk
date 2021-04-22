@@ -27,11 +27,8 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 				package: 'BrowserStackLocal'
 				with: [ spec requires: #(OSSubprocess Parasol) ].
 			spec
-				package: 'BrowserStackParallel'
-				with: [ spec requires: #(BrowserStackLocal ParallelTesting) ].
-			spec
 				package: 'BrowserStackParallel-Tests'
-				with: [ spec requires: #(BrowserStackParallel Parasol) ].
+				with: [ spec requires: #(BrowserStackLocal Parasol ParallelTesting) ].
 			spec
 				package: 'BrowserStackLocal-Tests'
 				with: [ spec requires: #(BrowserStackLocal Parasol) ] ].
@@ -39,5 +36,5 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		group: 'core' with: #(BrowserStackLocal);
 		group: 'tests' with: #('BrowserStackLocal-Tests' 'BrowserStackParallel-Tests');
 		group: 'default' with: #(tests);
-		group: 'parallel' with: #(BrowserStackParallel)
+		group: 'parallel' with: #(BrowserStackLocal ParallelTesting)
 ]
