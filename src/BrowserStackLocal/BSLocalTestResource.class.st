@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #running }
-BSLocalTestResource >> initialze [
+BSLocalTestResource >> initialize [
 	super initialize.
 	state := false
 ]
