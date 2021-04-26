@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#classInstVars : [
 		'browserstackKey',
-		'browserstackUsername'
+		'browserstackUsername',
+		'pid'
 	],
 	#category : #BrowserStackLocal
 }
@@ -105,6 +106,11 @@ BSLocal class >> getBinary [
 ]
 
 { #category : #accessing }
+BSLocal class >> running [
+	^ pid isNotNil
+]
+
+{ #category : #accessing }
 BSLocal class >> settingsOn: aBuilder [
 	<systemsettings>	
 	(aBuilder group: #browserstack)
@@ -115,14 +121,22 @@ BSLocal class >> settingsOn: aBuilder [
 
 { #category : #accessing }
 BSLocal class >> start [
-	self stop.
-	OSSUnixSubprocess new
-		command: self getBinary fullName;
-		arguments:
-			{'-d'.
-			'start'.
-			self browserstackKey};
-		runAndWait
+
+	| response |
+	pid ifNil: [ 
+		OSSUnixSubprocess new
+			command: self getBinary fullName;
+			arguments: { 
+					'-d'.
+					'start'.
+					self browserstackKey };
+			runAndWaitOnExitDo: [ :cmd :output | 
+				response := NeoJSONReader fromString: output.
+				response at: 'state' ifPresent: [ :state | 
+						state = 'connected' ifTrue: [ 
+								pid := response at: 'pid'.
+								^ self ] ].
+				Error signal: output ] ]
 ]
 
 { #category : #accessing }
@@ -143,5 +157,6 @@ BSLocal class >> stop [
 	OSSUnixSubprocess new
 		command: self getBinary fullName;
 		arguments: {'-d' . 'stop'};
-		runAndWait
+		runAndWait.
+	pid := nil.
 ]

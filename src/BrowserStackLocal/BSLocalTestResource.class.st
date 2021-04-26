@@ -8,16 +8,20 @@ Class {
 }
 
 { #category : #running }
-BSLocalTestResource >> initialze [
+BSLocalTestResource >> initialize [
 	super initialize.
 	state := false
+]
+
+{ #category : #running }
+BSLocalTestResource >> isAvailable [ 
+	^ BSLocal running
 ]
 
 { #category : #running }
 BSLocalTestResource >> setUp [
 
 	super setUp.
-	state ifTrue: [ ^ self ].
 	BSLocal start.
 	state := true
 ]
