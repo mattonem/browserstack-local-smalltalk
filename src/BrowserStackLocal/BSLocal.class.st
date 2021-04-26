@@ -130,6 +130,7 @@ BSLocal class >> start [
 					'-d'.
 					'start'.
 					self browserstackKey };
+			redirectStdout;
 			runAndWaitOnExitDo: [ :cmd :output | 
 				response := NeoJSONReader fromString: output.
 				response at: 'state' ifPresent: [ :state | 
