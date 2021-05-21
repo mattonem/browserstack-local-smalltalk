@@ -42,7 +42,9 @@ BSLocalTestingParametrizedParallel class >> pixelCapabilities [
 { #category : #accessing }
 BSLocalTestingParametrizedParallel class >> resources [
 
-	^{BSLocalTestResource}
+	^ { 
+		  BSLocalTestResource.
+		  BSSeasideServerTestResource }
 ]
 
 { #category : #tests }
@@ -69,7 +71,6 @@ BSLocalTestingParametrizedParallel >> setUp [
 
 	| option |
 	super setUp.
-	ZnZincServerAdaptor startOn: 8080.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BSLocal browserstackUsername.
 	BPRemoteWebDriver password: BSLocal browserstackKey.
