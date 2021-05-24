@@ -69,8 +69,8 @@ BSLocalTestingParametrized >> setUp [
 	super setUp.
 	BSLocal start.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
-	BPRemoteWebDriver username: BSLocal browserstackUsername.
-	BPRemoteWebDriver password: BSLocal browserstackKey.
+	BPRemoteWebDriver username: BrowserstackCredentials browserstackUsername.
+	BPRemoteWebDriver password: BrowserstackCredentials browserstackKey.
 	BPRemoteWebDriver scheme: 'https'.
 	BPRemoteWebDriver serverPort: 443.
 	option := capabilities.

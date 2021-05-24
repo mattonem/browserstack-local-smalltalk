@@ -25,53 +25,8 @@ BSLocal class >> binaryUrl [
 ]
 
 { #category : #accessing }
-BSLocal class >> browserstackKey [
-	^ browserstackKey
-		ifNil: [ Smalltalk os environment
-				at: 'BROWSERSTACK_ACCESS_KEY'
-				ifAbsent: [ '' ] ]
-]
-
-{ #category : #accessing }
-BSLocal class >> browserstackKey: aKey [
-	^ browserstackKey := aKey
-]
-
-{ #category : #accessing }
-BSLocal class >> browserstackKeySettingOn: aBuilder [
-	<systemsettings>
-	(aBuilder setting: #browserstackKey) 
-		label: 'Browserstack key' translated;
-		description: 'Your browserstack private key' translated;
-		setSelector: #browserstackKey:;
-		getSelector: #browserstackKey;
-		target: self;
-		parent: #browserstack.
-]
-
-{ #category : #accessing }
-BSLocal class >> browserstackUsername [
-	^ browserstackUsername
-		ifNil: [ Smalltalk os environment
-				at: 'BROWSERSTACK_USERNAME'
-				ifAbsent: [ '' ] ]
-]
-
-{ #category : #accessing }
-BSLocal class >> browserstackUsername: aUsername [
-	^ browserstackUsername := aUsername
-]
-
-{ #category : #accessing }
-BSLocal class >> browserstackUsernameSettingOn: aBuilder [
-	<systemsettings>
-	(aBuilder setting: #browserstackUsername) 
-		label: 'Browserstack username' translated;
-		description: 'Your browserstack username' translated;
-		setSelector: #browserstackUsername:;
-		getSelector: #browserstackUsername;
-		target: self;
-		parent: #browserstack.
+BSLocal class >> credentials [ 
+	^ BrowserstackCredentials
 ]
 
 { #category : #accessing }
@@ -129,7 +84,7 @@ BSLocal class >> start [
 			arguments: { 
 					'-d'.
 					'start'.
-					self browserstackKey };
+					self credentials browserstackKey };
 			redirectStdout;
 			runAndWaitOnExitDo: [ :cmd :output | 
 				response := NeoJSONReader fromString: output.

@@ -5,7 +5,7 @@ Class {
 		'arguments',
 		'experimentalOptions'
 	],
-	#category : #BrowserStackLocal
+	#category : #'BrowserStack-Core'
 }
 
 { #category : #comparing }
