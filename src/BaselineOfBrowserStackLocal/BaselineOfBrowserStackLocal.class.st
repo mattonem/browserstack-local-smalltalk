@@ -4,44 +4,13 @@ Class {
 	#category : #BaselineOfBrowserStackLocal
 }
 
-{ #category : #baseline }
+{ #category : #baselines }
 BaselineOfBrowserStackLocal >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ 
-		spec baseline: 'NeoJSON' with: [ 
-			spec
-				loads: #( 'core' );
-				repository: 'github://svenvc/NeoJSON/repository' ].
-		spec baseline: 'Parasol' with: [ 
-			spec
-				loads: #( 'core' );
-				repository: 'github://SeasideSt/Parasol/repository' ].
-		spec baseline: 'Seaside3' with: [ 
-			spec
-				loads: #( 'Tests' 'Zinc' );
-				repository: 'github://SeasideSt/Seaside/repository' ].
-		spec baseline: 'OSSubprocess' with: [ 
-			spec
-				repository:
-					'github://pharo-contributions/OSSubprocess:master/repository';
-				loads: #default ].
-		spec baseline: 'ParallelTesting' with: [ 
-			spec
-				repository: 'github://mattonem/ParallelTesting:master';
-				loads: #core ].
-		spec package: 'BrowserStackLocal' with: [ 
-			spec requires:
-				#( core OSSubprocess NeoJSON ) ].
-		spec
-			package: 'BrowserStackParallel-Tests'
-			with: [ 
-			spec requires: #( local core ParallelTesting ) ].
-		spec
-			package: 'BrowserStackLocal-Tests'
-			with: [ spec requires: #( BrowserStackLocal ) ].
-
-		spec package: 'BrowserStack-Core' with: [ spec requires: #( Parasol ) ] ].
+		self dependencies: spec.
+		self definePackages: spec ].
 	spec
 		group: 'core' with: #( 'BrowserStack-Core' );
 		group: 'local' with: #( core BrowserStackLocal );
@@ -50,4 +19,48 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		group: 'tests'
 		with: #( 'BrowserStackLocal-Tests' 'BrowserStackParallel-Tests'
 			   'Seaside3' )
+]
+
+{ #category : #baselines }
+BaselineOfBrowserStackLocal >> definePackages: spec [
+
+	spec
+		package: 'BrowserStackLocal'
+		with: [ spec requires: #( core OSSubprocess NeoJSON ) ].
+	spec
+		package: 'BrowserStackParallel-Tests'
+		with: [ spec requires: #( local core ParallelTesting ) ].
+	spec
+		package: 'BrowserStackLocal-Tests'
+		with: [ spec requires: #( BrowserStackLocal ) ].
+	^ spec
+		  package: 'BrowserStack-Core'
+		  with: [ spec requires: #( Parasol ) ]
+]
+
+{ #category : #baselines }
+BaselineOfBrowserStackLocal >> dependencies: spec [
+
+	spec
+		baseline: 'NeoJSON' with: [ 
+			spec
+				loads: #( 'core' );
+				repository: 'github://svenvc/NeoJSON/repository' ];
+		baseline: 'Parasol' with: [ 
+			spec
+				loads: #( 'core' );
+				repository: 'github://SeasideSt/Parasol/repository' ];
+		baseline: 'Seaside3' with: [ 
+			spec
+				loads: #( 'Tests' 'Zinc' );
+				repository: 'github://SeasideSt/Seaside/repository' ];
+		baseline: 'OSSubprocess' with: [ 
+			spec
+				repository:
+					'github://pharo-contributions/OSSubprocess:master/repository';
+				loads: #default ];
+		baseline: 'ParallelTesting' with: [ 
+			spec
+				repository: 'github://mattonem/ParallelTesting:master';
+				loads: #core ]
 ]
