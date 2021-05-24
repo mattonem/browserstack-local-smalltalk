@@ -11,7 +11,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 	spec for: #common do: [ 
 		spec baseline: 'NeoJSON' with: [ 
 			spec
-				loads: #( 'default' );
+				loads: #( 'core' );
 				repository: 'github://svenvc/NeoJSON/repository' ].
 		spec baseline: 'Parasol' with: [ 
 			spec
@@ -32,21 +32,22 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 				loads: #core ].
 		spec package: 'BrowserStackLocal' with: [ 
 			spec requires:
-				#( BrowserStack - Core OSSubprocess Parasol NeoJSON ) ].
+				#( core OSSubprocess NeoJSON ) ].
 		spec
 			package: 'BrowserStackParallel-Tests'
 			with: [ 
-			spec requires: #( BrowserStackLocal Parasol ParallelTesting ) ].
+			spec requires: #( local core ParallelTesting ) ].
 		spec
 			package: 'BrowserStackLocal-Tests'
-			with: [ spec requires: #( BrowserStackLocal Parasol ) ].
+			with: [ spec requires: #( BrowserStackLocal ) ].
 
 		spec package: 'BrowserStack-Core' with: [ spec requires: #(  ) ] ].
 	spec
-		group: 'core' with: #( BrowserStack - Core );
+		group: 'core' with: #( 'BrowserStack-Core' );
 		group: 'local' with: #( core BrowserStackLocal );
 		group: 'parallel' with: #( core ParallelTesting );
 		group: 'default' with: #( parallel local );
 		group: 'tests'
-		with: #( 'BrowserStackLocal-Tests' 'BrowserStackParallel-Tests' 'Seaside3' )
+		with: #( 'BrowserStackLocal-Tests' 'BrowserStackParallel-Tests'
+			   'Seaside3' )
 ]
