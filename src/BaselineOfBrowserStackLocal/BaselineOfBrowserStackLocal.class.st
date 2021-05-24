@@ -41,7 +41,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 			package: 'BrowserStackLocal-Tests'
 			with: [ spec requires: #( BrowserStackLocal ) ].
 
-		spec package: 'BrowserStack-Core' with: [ spec requires: #(  ) ] ].
+		spec package: 'BrowserStack-Core' with: [ spec requires: #( Parasol ) ] ].
 	spec
 		group: 'core' with: #( 'BrowserStack-Core' );
 		group: 'local' with: #( core BrowserStackLocal );
