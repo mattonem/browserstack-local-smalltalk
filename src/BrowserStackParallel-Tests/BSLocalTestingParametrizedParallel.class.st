@@ -1,15 +1,17 @@
 Class {
-	#name : #BSLocalTestingParametrized,
+	#name : #BSLocalTestingParametrizedParallel,
 	#superclass : #ParametrizedTestCase,
+	#traits : 'ParallelTestCase',
+	#classTraits : 'ParallelTestCase classTrait',
 	#instVars : [
 		'driver',
 		'capabilities'
 	],
-	#category : #'BrowserStackLocal-Tests'
+	#category : #'BrowserStackParallel-Tests'
 }
 
 { #category : #tests }
-BSLocalTestingParametrized class >> chromeCapabilities [
+BSLocalTestingParametrizedParallel class >> chromeCapabilities [
 	| option |
 	option := BPGenericOptions new.
 	option setCapability: 'os' to: 'windows'.
@@ -24,7 +26,7 @@ BSLocalTestingParametrized class >> chromeCapabilities [
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized class >> pixelCapabilities [
+BSLocalTestingParametrizedParallel class >> pixelCapabilities [
 	| option |
 	option := BPGenericOptions new.
 	option setCapability: 'os_version' to: '11.0'.
@@ -37,14 +39,16 @@ BSLocalTestingParametrized class >> pixelCapabilities [
 	^ option
 ]
 
-{ #category : #tests }
-BSLocalTestingParametrized class >> resources [
+{ #category : #accessing }
+BSLocalTestingParametrizedParallel class >> resources [
 
-	^{BSLocalTestResource. BSSeasideServerTestResource}
+	^ { 
+		  BSLocalTestResource.
+		  BSSeasideServerTestResource }
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized class >> testParameters [
+BSLocalTestingParametrizedParallel class >> testParameters [
 
 	^ ParametrizedTestMatrix new
 		addCase: { #capabilities -> self chromeCapabilities. };
@@ -53,21 +57,20 @@ BSLocalTestingParametrized class >> testParameters [
 ]
 
 { #category : #running }
-BSLocalTestingParametrized >> capabilities: someCapabilities [
+BSLocalTestingParametrizedParallel >> capabilities: someCapabilities [
 	capabilities := someCapabilities
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized >> defaultTimeLimit [ 
+BSLocalTestingParametrizedParallel >> defaultTimeLimit [ 
 	^ 2 minute
 ]
 
 { #category : #running }
-BSLocalTestingParametrized >> setUp [
+BSLocalTestingParametrizedParallel >> setUp [
 
 	| option |
 	super setUp.
-	BSLocal start.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BrowserstackCredentials browserstackUsername.
 	BPRemoteWebDriver password: BrowserstackCredentials browserstackKey.
@@ -78,14 +81,19 @@ BSLocalTestingParametrized >> setUp [
 ]
 
 { #category : #running }
-BSLocalTestingParametrized >> tearDown [ 
+BSLocalTestingParametrizedParallel >> tearDown [ 
 	super tearDown.
 	driver quit.
-	BSLocal stop
 ]
 
 { #category : #running }
-BSLocalTestingParametrized >> testBSLocal [
+BSLocalTestingParametrizedParallel >> testBSLocal [
+	driver get: 'http://localhost:8080'.
+	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.4'
+]
+
+{ #category : #running }
+BSLocalTestingParametrizedParallel >> testBSLocal2 [
 	driver get: 'http://localhost:8080'.
 	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.4'
 ]
