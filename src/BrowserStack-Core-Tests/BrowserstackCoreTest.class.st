@@ -91,14 +91,9 @@ BrowserstackCoreTest >> defaultTimeLimit [
 ]
 
 { #category : #'as yet unclassified' }
-BrowserstackCoreTest >> initialize [ 
-	super initialize.
-	hasFailed := false
-]
-
-{ #category : #'as yet unclassified' }
 BrowserstackCoreTest >> setUp [ 
 	super setUp.
+	hasFailed := false.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BrowserstackCredentials browserstackUsername.
 	BPRemoteWebDriver password: BrowserstackCredentials browserstackKey.
