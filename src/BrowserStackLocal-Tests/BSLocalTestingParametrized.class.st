@@ -19,7 +19,7 @@ BSLocalTestingParametrized class >> chromeCapabilities [
 	option setCapability: 'browserstack.local' to: true.
 	option setCapability: 'project' to: 'ce-challenge'.
 	option setCapability: 'name' to: 'smalltalk-test'.
-	option setCapability: 'build' to: BSBuildName value. 
+	option setCapability: 'build' to: BSBuildName current startedAt. 
 	^ option
 ]
 
@@ -33,14 +33,17 @@ BSLocalTestingParametrized class >> pixelCapabilities [
 	option setCapability: 'browserstack.local' to: true.
 	option setCapability: 'project' to: 'ce-challenge'.
 	option setCapability: 'name' to: 'smalltalk-test'.
-	option setCapability: 'build' to: BSBuildName value.
+	option setCapability: 'build' to: BSBuildName current startedAt.
 	^ option
 ]
 
 { #category : #tests }
 BSLocalTestingParametrized class >> resources [
 
-	^{BSLocalTestResource. BSSeasideServerTestResource}
+	^ { 
+		  BSLocalTestResource.
+		  BSSeasideServerTestResource.
+		  BSBuildName }
 ]
 
 { #category : #tests }
@@ -67,7 +70,6 @@ BSLocalTestingParametrized >> setUp [
 
 	| option |
 	super setUp.
-	BSLocal start.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
 	BPRemoteWebDriver username: BrowserstackCredentials browserstackUsername.
 	BPRemoteWebDriver password: BrowserstackCredentials browserstackKey.
