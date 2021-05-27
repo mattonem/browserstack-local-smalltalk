@@ -14,7 +14,7 @@ Class {
 
 { #category : #tests }
 BrowserstackCoreTest class >> buildName [
-	^ BSBuildName current startedAt
+	^ BSBuildName current key
 ]
 
 { #category : #tests }

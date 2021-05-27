@@ -2,24 +2,31 @@ Class {
 	#name : #BSBuildName,
 	#superclass : #TestResource,
 	#instVars : [
-		'value'
+		'startTime',
+		'randomKey'
 	],
 	#category : #'BrowserStack-Core'
 }
 
 { #category : #running }
+BSBuildName >> key [
+	^ randomKey
+]
+
+{ #category : #running }
 BSBuildName >> setUp [
 	super setUp.
-	value := Time now asString
+	startTime := Time now asString.
+	randomKey := UUIDGenerator new nextRandom16 
 ]
 
 { #category : #running }
 BSBuildName >> startedAt [
-	^ value
+	^ startTime
 ]
 
 { #category : #running }
 BSBuildName >> tearDown [
 	super tearDown.
-	value := nil.
+	startTime := nil.
 ]

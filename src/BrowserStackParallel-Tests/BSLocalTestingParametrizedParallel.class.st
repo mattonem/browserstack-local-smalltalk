@@ -21,7 +21,7 @@ BSLocalTestingParametrizedParallel class >> chromeCapabilities [
 	option setCapability: 'browserstack.local' to: true.
 	option setCapability: 'project' to: 'ce-challenge'.
 	option setCapability: 'name' to: 'smalltalk-test'.
-	option setCapability: 'build' to: BSBuildName current startedAt. 
+	option setCapability: 'build' to: BSBuildName current key. 
 	^ option
 ]
 
@@ -35,7 +35,7 @@ BSLocalTestingParametrizedParallel class >> pixelCapabilities [
 	option setCapability: 'browserstack.local' to: true.
 	option setCapability: 'project' to: 'ce-challenge'.
 	option setCapability: 'name' to: 'smalltalk-test'.
-	option setCapability: 'build' to: BSBuildName current startedAt.
+	option setCapability: 'build' to: BSBuildName current key.
 	^ option
 ]
 
