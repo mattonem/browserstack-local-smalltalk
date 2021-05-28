@@ -18,7 +18,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		group: 'default' with: #( parallel local );
 		group: 'tests'
 		with: #( 'BrowserStackLocal-Tests' 'BrowserStackParallel-Tests'
-			    'Browserstack-Core-Tests' )
+			    'BrowserStack-Core-Tests' )
 ]
 
 { #category : #baselines }
