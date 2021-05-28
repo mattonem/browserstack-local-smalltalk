@@ -8,5 +8,11 @@ SmalltalkCISpec {
       #onConflict : #useIncoming,
       #platforms : [ #pharo ]
     }
-  ]
+  ],
+  #testing : {
+    #coverage : {
+      #packages : [ 'Browserstack.*' ],
+      #format : #coveralls
+    }
+  }
 }
