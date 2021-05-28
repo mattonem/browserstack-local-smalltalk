@@ -17,7 +17,7 @@ BSBuildName >> key [
 BSBuildName >> setUp [
 	super setUp.
 	startTime := Time now asString.
-	randomKey := UUIDGenerator new nextRandom16 
+	randomKey := UUIDGenerator new nextRandom16 asString
 ]
 
 { #category : #running }
