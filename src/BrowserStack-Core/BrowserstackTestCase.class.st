@@ -2,57 +2,39 @@
 A BrowserstackCredentialsTest is a test class for testing the behavior of BrowserstackCredentials
 "
 Class {
-	#name : #BrowserstackCoreTest,
+	#name : #BrowserstackTestCase,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'capabilities',
 		'driver',
 		'hasFailed'
 	],
-	#category : #'BrowserStack-Core-Tests'
+	#category : #'BrowserStack-Core'
 }
 
 { #category : #tests }
-BrowserstackCoreTest class >> buildName [
+BrowserstackTestCase class >> buildName [
 	^ BSBuildName current key
 ]
 
 { #category : #tests }
-BrowserstackCoreTest class >> chromeCapabilities: capabilities [
-
-	<desiredCapability>
-	^ capabilities
-		  setCapability: 'os' to: 'windows';
-		  setCapability: 'os_version' to: '10';
-		  setCapability: 'browser' to: 'Chrome';
-		  setCapability: 'browser_version' to: 'latest';
-		  yourself
+BrowserstackTestCase class >> isAbstract [
+	^ self name = #BrowserstackTestCase 
 ]
 
 { #category : #tests }
-BrowserstackCoreTest class >> pixelCapabilities: capabilities [
-
-	<desiredCapability>
-	^ capabilities
-		setCapability: 'os_version' to: '11.0';
-		setCapability: 'device' to: 'Google Pixel 4';
-		setCapability: 'real_mobile' to: true;
-		yourself.
-]
-
-{ #category : #tests }
-BrowserstackCoreTest class >> projectName [
+BrowserstackTestCase class >> projectName [
 	^ 'smalltalk test suite'
 ]
 
 { #category : #tests }
-BrowserstackCoreTest class >> resources [
+BrowserstackTestCase class >> resources [
 
 	^{BSBuildName}
 ]
 
 { #category : #tests }
-BrowserstackCoreTest class >> testParameters [
+BrowserstackTestCase class >> testParameters [
 
 	| matrix capabilities |
 	matrix := ParametrizedTestMatrix new.
@@ -67,7 +49,7 @@ BrowserstackCoreTest class >> testParameters [
 ]
 
 { #category : #tests }
-BrowserstackCoreTest >> assert: aBooleanOrBlock description: aStringOrBlock resumable: resumableBoolean [
+BrowserstackTestCase >> assert: aBooleanOrBlock description: aStringOrBlock resumable: resumableBoolean [
 
 	| val |
 	val := aBooleanOrBlock value.
@@ -81,17 +63,17 @@ BrowserstackCoreTest >> assert: aBooleanOrBlock description: aStringOrBlock resu
 ]
 
 { #category : #'as yet unclassified' }
-BrowserstackCoreTest >> capabilities: aBPGenericOptions [ 
+BrowserstackTestCase >> capabilities: aBPGenericOptions [ 
 	capabilities := aBPGenericOptions
 ]
 
 { #category : #'as yet unclassified' }
-BrowserstackCoreTest >> defaultTimeLimit [
+BrowserstackTestCase >> defaultTimeLimit [
 	^ 1 minute
 ]
 
 { #category : #'as yet unclassified' }
-BrowserstackCoreTest >> setUp [ 
+BrowserstackTestCase >> setUp [ 
 	super setUp.
 	hasFailed := false.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
@@ -104,7 +86,7 @@ BrowserstackCoreTest >> setUp [
 ]
 
 { #category : #'as yet unclassified' }
-BrowserstackCoreTest >> tearDown [
+BrowserstackTestCase >> tearDown [
 
 	super tearDown.
 	hasFailed ifFalse: [ 
@@ -113,11 +95,4 @@ BrowserstackCoreTest >> tearDown [
 			'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed"}}'
 			with: #(  ) ].
 	driver quit
-]
-
-{ #category : #tests }
-BrowserstackCoreTest >> testOne [
-
-	driver get: 'https://google.fr'.
-	self assert: true
 ]
