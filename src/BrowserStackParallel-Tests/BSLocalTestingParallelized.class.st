@@ -1,11 +1,13 @@
 Class {
-	#name : #BSLocalTestingParametrized,
+	#name : #BSLocalTestingParallelized,
 	#superclass : #BrowserstackTestCase,
-	#category : #'BrowserStackLocal-Tests'
+	#traits : 'ParallelTestCase',
+	#classTraits : 'ParallelTestCase classTrait',
+	#category : #'BrowserStackParallel-Tests'
 }
 
 { #category : #tests }
-BSLocalTestingParametrized class >> chromeCapabilities: capabilities [
+BSLocalTestingParallelized class >> chromeCapabilities: capabilities [
 
 	<desiredCapability>
 	^ capabilities
@@ -18,7 +20,7 @@ BSLocalTestingParametrized class >> chromeCapabilities: capabilities [
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized class >> pixelCapabilities: capabilities [
+BSLocalTestingParallelized class >> pixelCapabilities: capabilities [
 
 	<desiredCapability>
 	^ capabilities
@@ -30,7 +32,7 @@ BSLocalTestingParametrized class >> pixelCapabilities: capabilities [
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized class >> resources [
+BSLocalTestingParallelized class >> resources [
 
 	^ super resources , { 
 		  BSLocalTestResource.
@@ -38,12 +40,12 @@ BSLocalTestingParametrized class >> resources [
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized >> defaultTimeLimit [ 
+BSLocalTestingParallelized >> defaultTimeLimit [ 
 	^ 2 minute
 ]
 
 { #category : #running }
-BSLocalTestingParametrized >> testBSLocal [
+BSLocalTestingParallelized >> testBSLocal [
 	driver get: 'http://localhost:8080'.
 	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.4'
 ]

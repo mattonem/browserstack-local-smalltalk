@@ -31,5 +31,5 @@ BrowserstackCoreTestCaseExample class >> pixelCapabilities: capabilities [
 BrowserstackCoreTestCaseExample >> testOne [
 
 	driver get: 'https://google.fr'.
-	self assert: false
+	self assert: true
 ]
