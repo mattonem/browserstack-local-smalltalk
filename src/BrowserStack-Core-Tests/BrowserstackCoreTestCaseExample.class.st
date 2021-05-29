@@ -28,7 +28,7 @@ BrowserstackCoreTestCaseExample class >> pixelCapabilities: capabilities [
 ]
 
 { #category : #tests }
-BrowserstackCoreTestCaseExample >> testOne [
+BrowserstackCoreTestCaseExample >> testGoogle [
 
 	driver get: 'https://google.fr'.
 	self assert: true

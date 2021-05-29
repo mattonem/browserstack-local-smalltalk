@@ -41,11 +41,11 @@ BSLocalTestingParallelized class >> resources [
 
 { #category : #tests }
 BSLocalTestingParallelized >> defaultTimeLimit [ 
-	^ 2 minute
+	^ 3 minute
 ]
 
 { #category : #running }
-BSLocalTestingParallelized >> testBSLocal [
+BSLocalTestingParallelized >> testBSLocalParallized [
 	driver get: 'http://localhost:8080'.
 	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.4'
 ]
