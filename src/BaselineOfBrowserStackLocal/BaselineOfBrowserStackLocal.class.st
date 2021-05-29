@@ -18,7 +18,7 @@ BaselineOfBrowserStackLocal >> baseline: spec [
 		group: 'default' with: #( parallel local );
 		group: 'tests'
 		with: #( 'BrowserStackLocal-Tests' 'BrowserStackParallel-Tests'
-			   'Seaside3' )
+			    'BrowserStack-Core-Tests' )
 ]
 
 { #category : #baselines }
@@ -29,13 +29,16 @@ BaselineOfBrowserStackLocal >> definePackages: spec [
 		with: [ spec requires: #( core OSSubprocess NeoJSON ) ].
 	spec
 		package: 'BrowserStackParallel-Tests'
-		with: [ spec requires: #( local core ParallelTesting ) ].
+		with: [ spec requires: #( local core ParallelTesting Seaside3) ].
 	spec
 		package: 'BrowserStackLocal-Tests'
-		with: [ spec requires: #( BrowserStackLocal ) ].
-	^ spec
-		  package: 'BrowserStack-Core'
-		  with: [ spec requires: #( Parasol ) ]
+		with: [ spec requires: #( BrowserStackLocal Seaside3 ) ].
+	spec
+		package: 'BrowserStack-Core'
+		with: [ spec requires: #( Parasol ) ].
+	spec
+		package: 'BrowserStack-Core-Tests'
+		with: [ spec requires: #( core ) ]
 ]
 
 { #category : #baselines }
