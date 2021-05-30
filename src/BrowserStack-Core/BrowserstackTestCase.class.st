@@ -14,7 +14,9 @@ Class {
 
 { #category : #tests }
 BrowserstackTestCase class >> buildName [
-	^ BSBuildInfo current key
+
+	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
+	  , self buildStartTime
 ]
 
 { #category : #tests }
@@ -25,8 +27,7 @@ BrowserstackTestCase class >> buildRandomKey [
 { #category : #tests }
 BrowserstackTestCase class >> buildStartTime [
 
-	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
-	  , self buildStartTime
+	^ BSBuildInfo current startedAt 
 ]
 
 { #category : #tests }
