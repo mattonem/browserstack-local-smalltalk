@@ -1,5 +1,5 @@
 Class {
-	#name : #BSBuildName,
+	#name : #BSBuildInfo,
 	#superclass : #TestResource,
 	#instVars : [
 		'startTime',
@@ -9,24 +9,24 @@ Class {
 }
 
 { #category : #running }
-BSBuildName >> key [
+BSBuildInfo >> key [
 	^ randomKey
 ]
 
 { #category : #running }
-BSBuildName >> setUp [
+BSBuildInfo >> setUp [
 	super setUp.
 	startTime := Time now asString.
 	randomKey := UUIDGenerator new nextRandom16 asString
 ]
 
 { #category : #running }
-BSBuildName >> startedAt [
+BSBuildInfo >> startedAt [
 	^ startTime
 ]
 
 { #category : #running }
-BSBuildName >> tearDown [
+BSBuildInfo >> tearDown [
 	super tearDown.
 	startTime := nil.
 ]
