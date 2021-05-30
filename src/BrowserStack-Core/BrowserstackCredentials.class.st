@@ -25,6 +25,7 @@ BrowserstackCredentials class >> browserstackKey: aKey [
 BrowserstackCredentials class >> browserstackKeySettingOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #browserstackKey) 
+		order: 1;
 		label: 'Browserstack key' translated;
 		description: 'Your browserstack private key';
 		setSelector: #browserstackKey:;
@@ -50,6 +51,7 @@ BrowserstackCredentials class >> browserstackUsername: aUsername [
 BrowserstackCredentials class >> browserstackUsernameSettingOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #browserstackUsername) 
+		order: 0;
 		label: 'Browserstack username' translated;
 		description: 'Your browserstack username';
 		setSelector: #browserstackUsername:;
