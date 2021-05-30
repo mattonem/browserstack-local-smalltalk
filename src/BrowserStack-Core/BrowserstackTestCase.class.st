@@ -14,7 +14,19 @@ Class {
 
 { #category : #tests }
 BrowserstackTestCase class >> buildName [
-	^ BSBuildName current key
+	^ BSBuildInfo current key
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> buildRandomKey [
+	^ BSBuildInfo current key 
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> buildStartTime [
+
+	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
+	  , self buildStartTime
 ]
 
 { #category : #tests }
@@ -30,7 +42,7 @@ BrowserstackTestCase class >> projectName [
 { #category : #tests }
 BrowserstackTestCase class >> resources [
 
-	^{BSBuildName}
+	^{BSBuildInfo}
 ]
 
 { #category : #tests }
