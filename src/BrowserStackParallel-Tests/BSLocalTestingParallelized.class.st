@@ -1,8 +1,8 @@
 Class {
 	#name : #BSLocalTestingParallelized,
 	#superclass : #BrowserstackTestCase,
-	#traits : 'ParallelTestCase + BSChromeLatest + BSPixel',
-	#classTraits : 'ParallelTestCase classTrait + BSChromeLatest classTrait + BSPixel classTrait',
+	#traits : 'ParallelTestCase + BSChromeLatest + BSPixel4_11',
+	#classTraits : 'ParallelTestCase classTrait + BSChromeLatest classTrait + BSPixel4_11 classTrait',
 	#category : #'BrowserStackParallel-Tests'
 }
 
