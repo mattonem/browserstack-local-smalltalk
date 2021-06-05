@@ -34,7 +34,7 @@ BSLocalTestingParametrized class >> resources [
 
 	^ super resources , { 
 		  BSLocalTestResource.
-		  BSSeasideServerTestResource }
+		  BSZincServerTestResource }
 ]
 
 { #category : #tests }
@@ -45,5 +45,5 @@ BSLocalTestingParametrized >> defaultTimeLimit [
 { #category : #running }
 BSLocalTestingParametrized >> testBSLocal [
 	driver get: 'http://localhost:8080'.
-	self assert: driver getTitle equals: 'Welcome to Seaside 3.4.4'
+	self assert: driver getTitle equals: 'Zinc HTTP Components'
 ]
