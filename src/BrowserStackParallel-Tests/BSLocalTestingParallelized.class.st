@@ -14,6 +14,13 @@ BSLocalTestingParallelized class >> resources [
 		  BSZincServerTestResource }
 ]
 
+{ #category : #running }
+BSLocalTestingParallelized >> defaultCapabilities: someCapabilities [
+
+	super defaultCapabilities: someCapabilities.
+	someCapabilities setCapability: 'browserstack.local' to: true
+]
+
 { #category : #tests }
 BSLocalTestingParallelized >> defaultTimeLimit [ 
 	^ 3 minute
