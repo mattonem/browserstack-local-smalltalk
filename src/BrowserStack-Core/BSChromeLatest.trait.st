@@ -1,9 +1,5 @@
 Trait {
 	#name : #BSChromeLatest,
-	#instVars : [
-		'arguments',
-		'experimentalOptions'
-	],
 	#category : #'BrowserStack-Core'
 }
 

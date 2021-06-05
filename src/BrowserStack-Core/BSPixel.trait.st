@@ -1,9 +1,5 @@
 Trait {
 	#name : #BSPixel,
-	#instVars : [
-		'arguments',
-		'experimentalOptions'
-	],
 	#category : #'BrowserStack-Core'
 }
 
