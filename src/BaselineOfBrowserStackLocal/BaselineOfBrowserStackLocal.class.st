@@ -29,10 +29,10 @@ BaselineOfBrowserStackLocal >> definePackages: spec [
 		with: [ spec requires: #( core OSSubprocess NeoJSON ) ].
 	spec
 		package: 'BrowserStackParallel-Tests'
-		with: [ spec requires: #( local core ParallelTesting Seaside3) ].
+		with: [ spec requires: #( local core ParallelTesting) ].
 	spec
 		package: 'BrowserStackLocal-Tests'
-		with: [ spec requires: #( BrowserStackLocal Seaside3 ) ].
+		with: [ spec requires: #( BrowserStackLocal) ].
 	spec
 		package: 'BrowserStack-Core'
 		with: [ spec requires: #( Parasol ) ].
@@ -53,10 +53,6 @@ BaselineOfBrowserStackLocal >> dependencies: spec [
 			spec
 				loads: #( 'core' );
 				repository: 'github://SeasideSt/Parasol/repository' ];
-		baseline: 'Seaside3' with: [ 
-			spec
-				loads: #( 'Tests' 'Zinc' );
-				repository: 'github://SeasideSt/Seaside/repository' ];
 		baseline: 'OSSubprocess' with: [ 
 			spec
 				repository:
