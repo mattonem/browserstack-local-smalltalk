@@ -80,7 +80,7 @@ BrowserstackTestCase >> defaultCapabilities: someCapabilities [
 
 	someCapabilities setCapability: 'name' to: testSelector asString.
 	someCapabilities setCapability: 'project' to: self projectName.
-	someCapabilities setCapability: 'project' to: self buildName.
+	someCapabilities setCapability: 'build' to: self buildName.
 	^ someCapabilities
 ]
 
