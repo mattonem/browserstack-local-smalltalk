@@ -39,6 +39,14 @@ BrowserstackTestCase class >> defaultCapabilities: someCapabilities [
 ]
 
 { #category : #tests }
+BrowserstackTestCase class >> desiredCapabilities [
+
+	^ { (BPGenericOptions new
+		   setCapability: 'browser' to: 'Chrome';
+		   yourself) }
+]
+
+{ #category : #tests }
 BrowserstackTestCase class >> isAbstract [
 	^ self name = #BrowserstackTestCase 
 ]
@@ -59,13 +67,10 @@ BrowserstackTestCase class >> testParameters [
 
 	| matrix |
 	matrix := ParametrizedTestMatrix new.
-	(Pragma allNamed: #desiredCapability in: self class) do: [ :pragma | 
-		matrix addCase: { (#capabilities
-			 ->
-			 (self defaultCapabilities: (self perform: pragma methodSelector))) } ].
-	(Pragma allNamed: #desiredCapabilities in: self class) do: [ :pragma | 
-		(self perform: pragma methodSelector) do: [ :aCap | 
-			matrix addCase: { (#capabilities -> (self defaultCapabilities: aCap)) } ] ].
+
+	self desiredCapabilities do: [ :aCap | 
+		matrix addCase:
+			{ (#capabilities -> (self defaultCapabilities: aCap)) } ].
 
 	^ matrix
 ]
