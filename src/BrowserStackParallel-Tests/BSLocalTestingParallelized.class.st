@@ -1,35 +1,10 @@
 Class {
 	#name : #BSLocalTestingParallelized,
 	#superclass : #BrowserstackTestCase,
-	#traits : 'ParallelTestCase',
-	#classTraits : 'ParallelTestCase classTrait',
+	#traits : 'ParallelTestCase + BSChromeLatest + BSPixel',
+	#classTraits : 'ParallelTestCase classTrait + BSChromeLatest classTrait + BSPixel classTrait',
 	#category : #'BrowserStackParallel-Tests'
 }
-
-{ #category : #tests }
-BSLocalTestingParallelized class >> chromeCapabilities: capabilities [
-
-	<desiredCapability>
-	^ capabilities
-		  setCapability: 'os' to: 'windows';
-		  setCapability: 'os_version' to: '10';
-		  setCapability: 'browser' to: 'Chrome';
-		  setCapability: 'browser_version' to: 'latest';
-		  setCapability: 'browserstack.local' to: true;
-		  yourself
-]
-
-{ #category : #tests }
-BSLocalTestingParallelized class >> pixelCapabilities: capabilities [
-
-	<desiredCapability>
-	^ capabilities
-		setCapability: 'os_version' to: '11.0';
-		setCapability: 'device' to: 'Google Pixel 4';
-		setCapability: 'real_mobile' to: true;
-		setCapability: 'browserstack.local' to: true;
-		yourself.
-]
 
 { #category : #tests }
 BSLocalTestingParallelized class >> resources [

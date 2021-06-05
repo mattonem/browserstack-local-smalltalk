@@ -5,10 +5,10 @@ Class {
 }
 
 { #category : #tests }
-BrowserstackCoreTestCaseExample class >> chromeCapabilities: capabilities [
+BrowserstackCoreTestCaseExample class >> chromeCapabilities [
 
 	<desiredCapability>
-	^ capabilities
+	^ BPGenericOptions new
 		  setCapability: 'os' to: 'windows';
 		  setCapability: 'os_version' to: '10';
 		  setCapability: 'browser' to: 'Chrome';
@@ -17,10 +17,10 @@ BrowserstackCoreTestCaseExample class >> chromeCapabilities: capabilities [
 ]
 
 { #category : #tests }
-BrowserstackCoreTestCaseExample class >> pixelCapabilities: capabilities [
+BrowserstackCoreTestCaseExample class >> pixelCapabilities [
 
 	<desiredCapability>
-	^ capabilities
+	^ BPGenericOptions new
 		setCapability: 'os_version' to: '11.0';
 		setCapability: 'device' to: 'Google Pixel 4';
 		setCapability: 'real_mobile' to: true;

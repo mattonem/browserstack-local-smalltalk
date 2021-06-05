@@ -13,31 +13,8 @@ Class {
 }
 
 { #category : #tests }
-BrowserstackTestCase class >> buildName [
-
-	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
-	  , self buildStartTime
-]
-
-{ #category : #tests }
-BrowserstackTestCase class >> buildRandomKey [
-	^ BSBuildInfo current key 
-]
-
-{ #category : #tests }
-BrowserstackTestCase class >> buildStartTime [
-
-	^ BSBuildInfo current startedAt 
-]
-
-{ #category : #tests }
 BrowserstackTestCase class >> isAbstract [
 	^ self name = #BrowserstackTestCase 
-]
-
-{ #category : #tests }
-BrowserstackTestCase class >> projectName [
-	^ 'smalltalk test suite'
 ]
 
 { #category : #tests }
@@ -49,14 +26,14 @@ BrowserstackTestCase class >> resources [
 { #category : #tests }
 BrowserstackTestCase class >> testParameters [
 
-	| matrix capabilities |
+	| matrix |
 	matrix := ParametrizedTestMatrix new.
 	(Pragma allNamed: #desiredCapability in: self class) do: [ :pragma | 
-		capabilities := BPGenericOptions new.
-		capabilities setCapability: 'project' to: self projectName.
-		capabilities setCapability: 'build' to: self buildName.
-		matrix addCase: { (#capabilities
-			 -> (self perform: pragma methodSelector with: capabilities)) } ].
+		matrix addCase:
+			{ (#capabilities -> (self perform: pragma methodSelector)) } ].
+	(Pragma allNamed: #desiredCapabilities in: self class) do: [ :pragma | 
+		(self perform: pragma methodSelector) do: [ :aCap | 
+			matrix addCase: { (#capabilities -> aCap) } ] ].
 
 	^ matrix
 ]
@@ -75,9 +52,36 @@ BrowserstackTestCase >> assert: aBooleanOrBlock description: aStringOrBlock resu
 		  resumable: resumableBoolean
 ]
 
+{ #category : #tests }
+BrowserstackTestCase >> buildName [
+
+	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
+	  , self buildStartTime
+]
+
+{ #category : #tests }
+BrowserstackTestCase >> buildRandomKey [
+	^ BSBuildInfo current key 
+]
+
+{ #category : #tests }
+BrowserstackTestCase >> buildStartTime [
+
+	^ BSBuildInfo current startedAt 
+]
+
 { #category : #'as yet unclassified' }
 BrowserstackTestCase >> capabilities: aBPGenericOptions [ 
 	capabilities := aBPGenericOptions
+]
+
+{ #category : #'as yet unclassified' }
+BrowserstackTestCase >> defaultCapabilities: someCapabilities [
+
+	someCapabilities setCapability: 'name' to: testSelector asString.
+	someCapabilities setCapability: 'project' to: self projectName.
+	someCapabilities setCapability: 'project' to: self buildName.
+	^ someCapabilities
 ]
 
 { #category : #'as yet unclassified' }
@@ -85,16 +89,23 @@ BrowserstackTestCase >> defaultTimeLimit [
 	^ 1 minute
 ]
 
+{ #category : #tests }
+BrowserstackTestCase >> projectName [
+	^ 'smalltalk test suite'
+]
+
 { #category : #'as yet unclassified' }
-BrowserstackTestCase >> setUp [ 
+BrowserstackTestCase >> setUp [
+
 	super setUp.
 	hasFailed := false.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
-	BPRemoteWebDriver username: BrowserstackCredentials browserstackUsername.
+	BPRemoteWebDriver username:
+		BrowserstackCredentials browserstackUsername.
 	BPRemoteWebDriver password: BrowserstackCredentials browserstackKey.
 	BPRemoteWebDriver scheme: 'https'.
 	BPRemoteWebDriver serverPort: 443.
-	capabilities  setCapability: 'name' to: testSelector asString.
+	self defaultCapabilities: capabilities.
 	driver := BPRemoteWebDriver new initWithCapabilities: capabilities
 ]
 

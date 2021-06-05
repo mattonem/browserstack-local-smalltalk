@@ -5,10 +5,10 @@ Class {
 }
 
 { #category : #tests }
-BSLocalTestingParametrized class >> chromeCapabilities: capabilities [
+BSLocalTestingParametrized class >> chromeCapabilities [
 
 	<desiredCapability>
-	^ capabilities
+	^ BPGenericOptions new
 		  setCapability: 'os' to: 'windows';
 		  setCapability: 'os_version' to: '10';
 		  setCapability: 'browser' to: 'Chrome';
@@ -18,10 +18,10 @@ BSLocalTestingParametrized class >> chromeCapabilities: capabilities [
 ]
 
 { #category : #tests }
-BSLocalTestingParametrized class >> pixelCapabilities: capabilities [
+BSLocalTestingParametrized class >> pixelCapabilities [
 
 	<desiredCapability>
-	^ capabilities
+	^ BPGenericOptions new
 		setCapability: 'os_version' to: '11.0';
 		setCapability: 'device' to: 'Google Pixel 4';
 		setCapability: 'real_mobile' to: true;
