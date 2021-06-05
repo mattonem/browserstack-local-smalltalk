@@ -13,8 +13,39 @@ Class {
 }
 
 { #category : #tests }
+BrowserstackTestCase class >> buildName [
+
+	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
+	  , self buildStartTime
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> buildRandomKey [
+	^ BSBuildInfo current key 
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> buildStartTime [
+
+	^ BSBuildInfo current startedAt 
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> defaultCapabilities: someCapabilities [
+
+	someCapabilities setCapability: 'project' to: self projectName.
+	someCapabilities setCapability: 'build' to: self buildName.
+	^ someCapabilities
+]
+
+{ #category : #tests }
 BrowserstackTestCase class >> isAbstract [
 	^ self name = #BrowserstackTestCase 
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> projectName [
+	^ 'smalltalk test suite'
 ]
 
 { #category : #tests }
@@ -29,11 +60,12 @@ BrowserstackTestCase class >> testParameters [
 	| matrix |
 	matrix := ParametrizedTestMatrix new.
 	(Pragma allNamed: #desiredCapability in: self class) do: [ :pragma | 
-		matrix addCase:
-			{ (#capabilities -> (self perform: pragma methodSelector)) } ].
+		matrix addCase: { (#capabilities
+			 ->
+			 (self defaultCapabilities: (self perform: pragma methodSelector))) } ].
 	(Pragma allNamed: #desiredCapabilities in: self class) do: [ :pragma | 
 		(self perform: pragma methodSelector) do: [ :aCap | 
-			matrix addCase: { (#capabilities -> aCap) } ] ].
+			matrix addCase: { (#capabilities -> (self defaultCapabilities: aCap)) } ] ].
 
 	^ matrix
 ]
@@ -52,24 +84,6 @@ BrowserstackTestCase >> assert: aBooleanOrBlock description: aStringOrBlock resu
 		  resumable: resumableBoolean
 ]
 
-{ #category : #tests }
-BrowserstackTestCase >> buildName [
-
-	^ 'smalltalk build ' , self buildRandomKey , ' started at: '
-	  , self buildStartTime
-]
-
-{ #category : #tests }
-BrowserstackTestCase >> buildRandomKey [
-	^ BSBuildInfo current key 
-]
-
-{ #category : #tests }
-BrowserstackTestCase >> buildStartTime [
-
-	^ BSBuildInfo current startedAt 
-]
-
 { #category : #'as yet unclassified' }
 BrowserstackTestCase >> capabilities: aBPGenericOptions [ 
 	capabilities := aBPGenericOptions
@@ -79,19 +93,12 @@ BrowserstackTestCase >> capabilities: aBPGenericOptions [
 BrowserstackTestCase >> defaultCapabilities: someCapabilities [
 
 	someCapabilities setCapability: 'name' to: testSelector asString.
-	someCapabilities setCapability: 'project' to: self projectName.
-	someCapabilities setCapability: 'build' to: self buildName.
 	^ someCapabilities
 ]
 
 { #category : #'as yet unclassified' }
 BrowserstackTestCase >> defaultTimeLimit [
 	^ 1 minute
-]
-
-{ #category : #tests }
-BrowserstackTestCase >> projectName [
-	^ 'smalltalk test suite'
 ]
 
 { #category : #'as yet unclassified' }
