@@ -31,6 +31,22 @@ BrowserstackTestCase class >> buildStartTime [
 ]
 
 { #category : #tests }
+BrowserstackTestCase class >> defaultCapabilities: someCapabilities [
+
+	someCapabilities setCapability: 'project' to: self projectName.
+	someCapabilities setCapability: 'build' to: self buildName.
+	^ someCapabilities
+]
+
+{ #category : #tests }
+BrowserstackTestCase class >> desiredCapabilities [
+
+	^ { (BPGenericOptions new
+		   setCapability: 'browser' to: 'Chrome';
+		   yourself) }
+]
+
+{ #category : #tests }
 BrowserstackTestCase class >> isAbstract [
 	^ self name = #BrowserstackTestCase 
 ]
@@ -49,14 +65,12 @@ BrowserstackTestCase class >> resources [
 { #category : #tests }
 BrowserstackTestCase class >> testParameters [
 
-	| matrix capabilities |
+	| matrix |
 	matrix := ParametrizedTestMatrix new.
-	(Pragma allNamed: #desiredCapability in: self class) do: [ :pragma | 
-		capabilities := BPGenericOptions new.
-		capabilities setCapability: 'project' to: self projectName.
-		capabilities setCapability: 'build' to: self buildName.
-		matrix addCase: { (#capabilities
-			 -> (self perform: pragma methodSelector with: capabilities)) } ].
+
+	self desiredCapabilities do: [ :aCap | 
+		matrix addCase:
+			{ (#capabilities -> (self defaultCapabilities: aCap)) } ].
 
 	^ matrix
 ]
@@ -81,20 +95,29 @@ BrowserstackTestCase >> capabilities: aBPGenericOptions [
 ]
 
 { #category : #'as yet unclassified' }
+BrowserstackTestCase >> defaultCapabilities: someCapabilities [
+
+	someCapabilities setCapability: 'name' to: testSelector asString.
+	^ someCapabilities
+]
+
+{ #category : #'as yet unclassified' }
 BrowserstackTestCase >> defaultTimeLimit [
 	^ 1 minute
 ]
 
 { #category : #'as yet unclassified' }
-BrowserstackTestCase >> setUp [ 
+BrowserstackTestCase >> setUp [
+
 	super setUp.
 	hasFailed := false.
 	BPRemoteWebDriver serverHost: 'hub-cloud.browserstack.com'.
-	BPRemoteWebDriver username: BrowserstackCredentials browserstackUsername.
+	BPRemoteWebDriver username:
+		BrowserstackCredentials browserstackUsername.
 	BPRemoteWebDriver password: BrowserstackCredentials browserstackKey.
 	BPRemoteWebDriver scheme: 'https'.
 	BPRemoteWebDriver serverPort: 443.
-	capabilities  setCapability: 'name' to: testSelector asString.
+	self defaultCapabilities: capabilities.
 	driver := BPRemoteWebDriver new initWithCapabilities: capabilities
 ]
 

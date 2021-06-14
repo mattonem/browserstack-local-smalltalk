@@ -15,9 +15,11 @@ BSBuildInfo >> key [
 
 { #category : #running }
 BSBuildInfo >> setUp [
+
 	super setUp.
-	startTime := Time now asString.
-	randomKey := UUIDGenerator new nextRandom16 asString
+	startTime ifNil: [ startTime := Time now asString ].
+	randomKey ifNil: [ 
+		randomKey := UUIDGenerator new nextRandom16 asString ]
 ]
 
 { #category : #running }
@@ -29,4 +31,5 @@ BSBuildInfo >> startedAt [
 BSBuildInfo >> tearDown [
 	super tearDown.
 	startTime := nil.
+	randomKey := nil.
 ]

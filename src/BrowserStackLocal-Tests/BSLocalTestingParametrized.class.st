@@ -5,36 +5,18 @@ Class {
 }
 
 { #category : #tests }
-BSLocalTestingParametrized class >> chromeCapabilities: capabilities [
-
-	<desiredCapability>
-	^ capabilities
-		  setCapability: 'os' to: 'windows';
-		  setCapability: 'os_version' to: '10';
-		  setCapability: 'browser' to: 'Chrome';
-		  setCapability: 'browser_version' to: 'latest';
-		  setCapability: 'browserstack.local' to: true;
-		  yourself
-]
-
-{ #category : #tests }
-BSLocalTestingParametrized class >> pixelCapabilities: capabilities [
-
-	<desiredCapability>
-	^ capabilities
-		setCapability: 'os_version' to: '11.0';
-		setCapability: 'device' to: 'Google Pixel 4';
-		setCapability: 'real_mobile' to: true;
-		setCapability: 'browserstack.local' to: true;
-		yourself.
-]
-
-{ #category : #tests }
 BSLocalTestingParametrized class >> resources [
 
 	^ super resources , { 
 		  BSLocalTestResource.
 		  BSZincServerTestResource }
+]
+
+{ #category : #running }
+BSLocalTestingParametrized >> defaultCapabilities: someCapabilities [
+
+	super defaultCapabilities: someCapabilities.
+	someCapabilities setCapability: 'browserstack.local' to: true
 ]
 
 { #category : #tests }
