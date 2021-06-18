@@ -99,7 +99,7 @@ BrowserstackTestCase >> defaultCapabilities: someCapabilities [
 
 	someCapabilities
 		setCapability: 'name'
-		to: self class name , '>>' , testSelector asString.
+		to: self class name , '--' , testSelector asString.
 	^ someCapabilities
 ]
 
