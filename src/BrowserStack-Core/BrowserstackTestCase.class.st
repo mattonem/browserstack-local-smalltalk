@@ -97,7 +97,9 @@ BrowserstackTestCase >> capabilities: aBPGenericOptions [
 { #category : #'as yet unclassified' }
 BrowserstackTestCase >> defaultCapabilities: someCapabilities [
 
-	someCapabilities setCapability: 'name' to: testSelector asString.
+	someCapabilities
+		setCapability: 'name'
+		to: self class name , '--' , testSelector asString.
 	^ someCapabilities
 ]
 
