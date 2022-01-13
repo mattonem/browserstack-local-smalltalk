@@ -1,8 +1,8 @@
 Class {
 	#name : #BSLocalTestingParallelized,
 	#superclass : #BrowserstackTestCase,
-	#traits : 'ParallelTestCase + BSChromeLatest + BSPixel4_11 + BSIE11 + BSIPhone12_14 + BSFirefoxLatest',
-	#classTraits : 'ParallelTestCase classTrait + BSChromeLatest classTrait + BSPixel4_11 classTrait + BSIE11 classTrait + BSIPhone12_14 classTrait + BSFirefoxLatest classTrait',
+	#traits : 'ParallelTestCase + BSChromeLatest + BSPixel4_11 + BSIE11 + BSIPhone12_14 + BSFirefoxLatest + BSSamsungGalaxyS20Ultra_10',
+	#classTraits : 'ParallelTestCase classTrait + BSChromeLatest classTrait + BSPixel4_11 classTrait + BSIE11 classTrait + BSIPhone12_14 classTrait + BSFirefoxLatest classTrait + BSSamsungGalaxyS20Ultra_10 classTrait',
 	#category : #'BrowserStackParallel-Tests'
 }
 
